@@ -25,11 +25,13 @@ public class Poker_hand extends Hand {
     private boolean brelan = false;
     private boolean doublePair = false; 
     private boolean pair = false; 
+    private boolean highCard = true; 
     
     private int strongestCardValue = 0;
     private int weakestCardValue = 0;
     private int[] handStrength = {0,0}; 
     private String[] handName = {"High Card","Pair", "Double Pair","Brelan","Quinte", "Couleur", "Full", "Square", "Quinte Flush", "Quinte Flush Royale!"};
+    private boolean[] possibleHands = new boolean[]{quinteFlushRoyal,quinteFlush,square,full,color, quinte, brelan, doublePair,pair};
    
     
 
@@ -261,6 +263,16 @@ public class Poker_hand extends Hand {
         setFull();
         setQuinteFlush();
         setQuinteFlushRoyale();
+        for(boolean hand:possibleHands)
+        {
+            if (hand == true) {
+                this.highCard = false;
+            }
+        }
+        
+        if (this.highCard) {
+            setHandStrength(0, strongestCardValue);
+        }
     }
     
     public void displayTypeOfHand()

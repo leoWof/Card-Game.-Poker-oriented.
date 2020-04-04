@@ -57,8 +57,11 @@ public class Rounds {
         this.minimum_cave = 0; 
         
         }
-        
-        System.out.println("\n\nNo winner detected for this round.");
+        else
+        {
+            System.out.println("\n\nNo winner detected for this round.");
+
+        }
     }
     
     
@@ -85,7 +88,11 @@ public class Rounds {
     }
     
 
-
+     /**
+      * 
+      * @param players
+      * @return the amount of players who didn't fold on this round.
+      */
     public int getPlayingPLayersAmount(Poker_player[] players)
     {
         int counter = 0; 
@@ -97,6 +104,11 @@ public class Rounds {
         return counter;
     }
     
+    /**
+     * 
+     * @param players
+     * @return a list of the players who didn't Fold on this round. 
+     */
     public Poker_player[] setPlayingPlayers(Poker_player[] players){
         
         Poker_player[] playingPlayers = new Poker_player[getPlayingPLayersAmount(players)]; 
@@ -144,10 +156,12 @@ public class Rounds {
                 
                     this.winner = player; 
                 }
+                
                 else if(player.getHand().getHandStrength()[1] == winner.getHand().getHandStrength()[1]){
                      if (player.getHand().getStrongest() > winner.getHand().getStrongest()) {
                         
                          this.winner = player; 
+                         System.out.println("Check of the high card.");
                     }
                 }
                 //If finally, all in all, both hands are as strong as the other. 
