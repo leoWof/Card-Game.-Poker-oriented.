@@ -13,6 +13,8 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -27,7 +29,6 @@ import javax.swing.SwingConstants;
 public class Main {
     
     private static Poker_player players[];
-    private static Poker_player onGoingPlayers[];
     private static boolean gameOver = false; 
     /**
      * @param args the command line arguments
@@ -38,7 +39,7 @@ public class Main {
         //Shuffle
         deck.shuffle();
         //Creation of a set of player
-        players = init_player(2, deck);
+        players = init_player(3, deck);
         while(!gameOver)
         {
 
@@ -46,10 +47,14 @@ public class Main {
             for(Poker_player player: players)
             {
                 player.stopOrNot();
-                if (player.getState()) {
-                    player.setNewHand(deck);
 
-                }
+            }
+            
+            players = setRemainingPlayers();
+            if (players.length<2) {
+                System.out.println("Only one player left. \nEnd of the game.");
+                System.out.println("Player "+players[0].getPlayerId()+"finish the game with "+players[0].getToken()+"$");
+                gameOver = true; 
             }
             
 
@@ -106,4 +111,22 @@ public class Main {
         return players;
     }
     
+    public static Poker_player[] setRemainingPlayers()
+    {
+       List<Poker_player> remainingPlayersList = new ArrayList<>();
+       
+       for(Poker_player player: players)
+       {
+           if (player.getState()) {
+               remainingPlayersList.add(player);
+           }
+       }
+       
+       Poker_player[] remainingPlayer = new Poker_player[remainingPlayersList.size()]; 
+        for (int i = 0; i < remainingPlayer.length; i++) {
+            remainingPlayer[i] = remainingPlayersList.get(i);
+        }
+        
+        return remainingPlayer; 
+    }
 }

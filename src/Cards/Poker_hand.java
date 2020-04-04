@@ -263,15 +263,8 @@ public class Poker_hand extends Hand {
         setFull();
         setQuinteFlush();
         setQuinteFlushRoyale();
-        for(boolean hand:possibleHands)
-        {
-            if (hand == true) {
-                this.highCard = false;
-            }
-        }
-        
-        if (this.highCard) {
-            setHandStrength(0, strongestCardValue);
+        if (handStrength[0] == 0) {
+            handStrength[1] = this.strongestCardValue;
         }
     }
     

@@ -39,15 +39,16 @@ public class Rounds {
             player.LaunchAction(action);
         }
         
-        if (getPlayingPLayersAmount(players) >0 ) {
+        if (getPlayingPLayersAmount(players) > 0 ) {
 
             players = setPlayingPlayers(players);
             getRoundWinner(players);
 
 
             if (!this.equality) {
-                this.winner.getMoney();
+                this.winner.receiveMoney();
                 System.out.println("\n\nLe vaincqueur du round est: Player"+winner.getPlayerId());
+                System.out.println("\n--> Argent du vaincqueur:" +winner.getToken() +"$");
             }
             else{
                 System.out.println("\n\n This round had two players equal, the money is split between them.");
@@ -167,8 +168,8 @@ public class Rounds {
                 //If finally, all in all, both hands are as strong as the other. 
                 else{
                     this.equality = true; 
-                    winner.getMoneyEquality();
-                    player.getMoneyEquality();
+                    winner.receiveMoneyEquality();
+                    player.receiveMoneyEquality();
                 }
                 
             }
