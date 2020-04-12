@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gestion;
+package Tools.PokerTools.Gestion;
 
 
-import Player.Poker_player;
-import Cards.DeckOfCards;
-import Cards.Poker_hand;
+import Tools.PokerTools.Player.Poker_player;
+import Tools.Cards.DeckOfCards;
+import Tools.Cards.Poker_hand;
 import com.sun.istack.internal.NotNull;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ import java.util.stream.IntStream;
  *
  * @author quent
  */
-public class Rounds {
+public class PokerRounds {
     
     private static int total_stake = 0;  
     private static int minimum_cave = 20; 
@@ -29,7 +29,7 @@ public class Rounds {
 
  
     
-    public Rounds(Poker_player[] players , DeckOfCards deck)
+    public PokerRounds(Poker_player[] players , DeckOfCards deck)
     {
         
         for (Poker_player player:players) {
@@ -70,22 +70,22 @@ public class Rounds {
     
     public static void setMinimumCave(int x)
     {
-        Rounds.minimum_cave = x; 
+        PokerRounds.minimum_cave = x; 
     }
     
     public static int getMinimumCave()
     {
-        return Rounds.minimum_cave; 
+        return PokerRounds.minimum_cave; 
     }
     
     public static void increaseTotalStake(int x)
     {
-        Rounds.total_stake += x; 
+        PokerRounds.total_stake += x; 
     }
     
      public static int getStake()
     {
-        return Rounds.total_stake; 
+        return PokerRounds.total_stake; 
     }
     
 

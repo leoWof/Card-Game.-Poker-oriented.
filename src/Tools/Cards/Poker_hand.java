@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Cards;
+package Tools.Cards;
 
-import Cards.Hand;
-import Cards.DeckOfCards;
-import Cards.Card;
+import Tools.Cards.Hand;
+import Tools.Cards.DeckOfCards;
+import Tools.Cards.Card;
 import java.util.Arrays;
 
 /**

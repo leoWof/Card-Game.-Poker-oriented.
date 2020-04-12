@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Player;
+package Tools.PokerTools.Player;
 
-import Cards.DeckOfCards;
-import Cards.Poker_hand;
-import Gestion.Rounds;
+import Tools.Cards.DeckOfCards;
+import Tools.Cards.Poker_hand;
+import Tools.PokerTools.Gestion.PokerRounds;
 import java.util.Scanner;
 
 /**
@@ -50,11 +50,11 @@ public class Poker_player {
     public void raise() {
 
         Scanner scanner = new Scanner(System.in);
-        int minimumBet = Rounds.getMinimumCave() + 1;
+        int minimumBet = PokerRounds.getMinimumCave() + 1;
         int number;
 
         do {
-            System.out.println("---> Enter the amount you want to raise the bet to.\n---> The actual cave is fixed at: " + Rounds.getMinimumCave());
+            System.out.println("---> Enter the amount you want to raise the bet to.\n---> The actual cave is fixed at: " + PokerRounds.getMinimumCave());
             System.out.println("---> The minimum needed for a raise is " + minimumBet + "$.");
             while (!scanner.hasNextInt()) {
                 String input = scanner.next();
@@ -65,13 +65,13 @@ public class Poker_player {
                 System.out.println("You don't have enough token to raise the stake that much.\n Your actual amount of token is " + this.token);
                 number = 0;
             }
-        } while (number < Rounds.getMinimumCave() + 1);
+        } while (number < PokerRounds.getMinimumCave() + 1);
 
         this.token -= number;
-        Rounds.setMinimumCave(number);
-        Rounds.increaseTotalStake(number);
+        PokerRounds.setMinimumCave(number);
+        PokerRounds.increaseTotalStake(number);
 
-        System.out.println("La nouvelle valeur de la cave est de: " + Rounds.getMinimumCave() + " $");
+        System.out.println("La nouvelle valeur de la cave est de: " + PokerRounds.getMinimumCave() + " $");
         System.out.println("---> Votre argent: " + this.token + " $");
 
     }
@@ -80,9 +80,9 @@ public class Poker_player {
      *
      */
     public void follow() {
-        if (this.token >= Rounds.getMinimumCave()) {
-            this.token -= Rounds.getMinimumCave();
-            Rounds.increaseTotalStake(Rounds.getMinimumCave());
+        if (this.token >= PokerRounds.getMinimumCave()) {
+            this.token -= PokerRounds.getMinimumCave();
+            PokerRounds.increaseTotalStake(PokerRounds.getMinimumCave());
             System.out.println("---> Votre argent: " + this.token + " $");
         }
 
@@ -101,7 +101,7 @@ public class Poker_player {
     }
 
     public void describe_player_state() {
-        System.out.println("\n\nPlayer: " + this.id + "  Money: " + this.token + "$  \nCURRENT MINIMUM BET ----> " + Rounds.getMinimumCave() + "$\n");
+        System.out.println("\n\nPlayer: " + this.id + "  Money: " + this.token + "$  \nCURRENT MINIMUM BET ----> " + PokerRounds.getMinimumCave() + "$\n");
         getHand().dislayHand();
         getHand().checkHandPossibilities();
         getHand().displayTypeOfHand();
@@ -157,11 +157,11 @@ public class Poker_player {
         return this.token;
     }
     public void receiveMoney() {
-        this.token += Rounds.getStake();
+        this.token += PokerRounds.getStake();
     }
 
     public void receiveMoneyEquality() {
-        this.token += Rounds.getStake() / 2;
+        this.token += PokerRounds.getStake() / 2;
     }
 
     public int stopOrNot() {

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Game;
+package CardGames;
 
-import Gestion.Rounds;
-import Player.Poker_player;
-import Cards.Poker_hand;
-import Cards.DeckOfCards;
+import Tools.PokerTools.Gestion.PokerRounds;
+import Tools.PokerTools.Player.Poker_player;
+import Tools.Cards.Poker_hand;
+import Tools.Cards.DeckOfCards;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.io.File;
@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
  *
  * @author quent
  */
-public class Main {
+public class Poker {
     
     private static Poker_player players[];
     private static boolean gameOver = false; 
@@ -43,7 +43,7 @@ public class Main {
         while(!gameOver)
         {
 
-            Rounds round = new Rounds(players, deck);
+            PokerRounds round = new PokerRounds(players, deck);
             for(Poker_player player: players)
             {
                 player.stopOrNot();
@@ -60,6 +60,40 @@ public class Main {
 
         }
         
+     
+   
+        
+        
+
+        
+        
+        
+        //System.out.println(deck.getcards().length); 
+        
+        
+        
+        //Creation of a JFrame to display the card
+        /**JFrame window = new JFrame("POKER GAME"); 
+        window.setSize(500, 600);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+     
+        
+        //Creation of a Panel.
+        JPanel contentPane = new JPanel(new BorderLayout());
+        
+        
+        
+        //Creation of a JLabel, kind of a sticky note to write on. 
+        
+        JLabel cardLabel = new JLabel();
+        cardLabel.setHorizontalAlignment(JLabel.CENTER);
+        cardLabel.setSize(300,400);
+        
+        ImageIcon CardImg = new ImageIcon(deck.getCardWithIndex(25).getCardImg().getScaledInstance(150, 200, Image.SCALE_DEFAULT)); // Change the index of 0<=deck.getCardWithIndex()<=51 to get the corresponding image.
+        cardLabel.setIcon(CardImg);
+        
+        contentPane.add(cardLabel); 
+        window.add(contentPane);        
      
    
         
